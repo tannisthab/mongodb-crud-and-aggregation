@@ -1,82 +1,81 @@
-// Problem 8: Gift Card System
+// Problem 9: Courier Parcel Tracker
 
-// 1. Create collection & insert one gift card document
-db.giftcards.insertOne({
-  card_id: 1,
-  recipient_name: "Rahul",
-  sender_name: "Amit",
-  amount: 1000,
-  purchase_date: new Date("2026-04-01"),
-  expiry_date: new Date("2026-12-31"),
-  is_used: false
+// 1. Create collection & insert one parcel document
+db.parcels.insertOne({
+  parcel_id: 1,
+  sender_name: "Rahul",
+  receiver_name: "Priya",
+  weight: 2.5,
+  shipping_cost: 300,
+  booking_date: new Date("2026-04-20"),
+  delivery_status: "Pending"
 });
 
 
-// 2. Insert at least 5 gift card records using insertMany()
-db.giftcards.insertMany([
+// 2. Insert at least 5 parcel records using insertMany()
+db.parcels.insertMany([
   {
-    card_id: 2,
-    recipient_name: "Priya",
-    sender_name: "Neha",
-    amount: 1500,
-    purchase_date: new Date("2026-03-15"),
-    expiry_date: new Date("2026-10-15"),
-    is_used: false
+    parcel_id: 2,
+    sender_name: "Amit",
+    receiver_name: "Neha",
+    weight: 1.2,
+    shipping_cost: 150,
+    booking_date: new Date("2026-04-18"),
+    delivery_status: "Shipped"
   },
   {
-    card_id: 3,
-    recipient_name: "Arjun",
+    parcel_id: 3,
     sender_name: "Sneha",
-    amount: 500,
-    purchase_date: new Date("2025-12-01"),
-    expiry_date: new Date("2026-05-01"),
-    is_used: true
+    receiver_name: "Arjun",
+    weight: 3.0,
+    shipping_cost: 400,
+    booking_date: new Date("2026-04-17"),
+    delivery_status: "Pending"
   },
   {
-    card_id: 4,
-    recipient_name: "Riya",
-    sender_name: "Karan",
-    amount: 2000,
-    purchase_date: new Date("2026-02-10"),
-    expiry_date: new Date("2026-08-10"),
-    is_used: false
+    parcel_id: 4,
+    sender_name: "Riya",
+    receiver_name: "Karan",
+    weight: 0.8,
+    shipping_cost: 100,
+    booking_date: new Date("2026-04-15"),
+    delivery_status: "Delivered"
   },
   {
-    card_id: 5,
-    recipient_name: "Amit",
-    sender_name: "Rahul",
-    amount: 750,
-    purchase_date: new Date("2026-01-20"),
-    expiry_date: new Date("2026-07-20"),
-    is_used: true
+    parcel_id: 5,
+    sender_name: "Neha",
+    receiver_name: "Rahul",
+    weight: 2.0,
+    shipping_cost: 250,
+    booking_date: new Date("2026-04-14"),
+    delivery_status: "Shipped"
   },
   {
-    card_id: 6,
-    recipient_name: "Neha",
-    sender_name: "Priya",
-    amount: 1200,
-    purchase_date: new Date("2026-04-05"),
-    expiry_date: new Date("2026-11-05"),
-    is_used: false
+    parcel_id: 6,
+    sender_name: "Arjun",
+    receiver_name: "Sneha",
+    weight: 1.5,
+    shipping_cost: 200,
+    booking_date: new Date("2026-04-13"),
+    delivery_status: "Pending"
   }
 ]);
 
 
-// 3. Retrieve all cards where is_used is false AND expiry_date is after today
-db.giftcards.find({
-  is_used: false,
-  expiry_date: { $gt: new Date() }
+// 3. Retrieve all parcels with delivery_status "Pending"
+db.parcels.find({
+  delivery_status: "Pending"
 });
 
 
-// 4. Display only recipient_name, amount, and expiry_date (Projection)
-db.giftcards.find(
+// 4. Display only sender_name, receiver_name, and shipping_cost (Projection)
+db.parcels.find(
   {},
-  { _id: 0, recipient_name: 1, amount: 1, expiry_date: 1 }
+  { _id: 0, sender_name: 1, receiver_name: 1, shipping_cost: 1 }
 );
 
 
-// 5. Delete a gift card based on card_id
-db.giftcards.deleteOne({
-  card_id: 6
+// 5. Delete a parcel based on parcel_id
+db.parcels.deleteOne({
+  parcel_id: 6
 });
