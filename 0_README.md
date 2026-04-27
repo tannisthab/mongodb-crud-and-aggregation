@@ -72,3 +72,13 @@ This repository contains solutions to **30 MongoDB problem statements** covering
 2. Use a database:
    ```js
    use assignmentDB
+3. Run each file’s queries step by step
+
+## Author
+Tannistha Banerjee
+BSc Data Science & Analytics
+
+## Learning Outcome
+- Gained hands-on experience with MongoDB
+- Learned real-world database problem solving
+- Practiced CRUD operations and aggregation queries
